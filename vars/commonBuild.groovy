@@ -1,9 +1,15 @@
 def call() {
     stage('Checkout') {
-        git url: 'https://github.com/Bhargavkulla/jenkins-shared-library.git', branch: 'main'
+        checkout scm
     }
+
     stage('Unit Tests') {
         echo 'Running unit tests...'
-        sh 'echo "Pretending to run tests..."'
+        sh './gradlew test'
+    }
+
+    stage('Deploy') {
+        echo "Deploying to ${env.ENVIRONMENT} environment..."
+        // You can add deployment logic here
     }
 }
